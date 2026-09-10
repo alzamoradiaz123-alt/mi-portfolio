@@ -108,7 +108,7 @@
         </div>
         <div class="skills-grid">
           <div v-for="(items, category) in skills" :key="category">
-            <h5 class="item-title text-capitalize">{{ category }}</h5>
+            <h5 class="item-title">{{ formatCategory(category) }}</h5>
             <div class="skills-chips">
                 <span v-for="skill in items" :key="skill.nombre" class="chip">{{ skill.nombre }}</span>
             </div>
@@ -135,6 +135,15 @@
 <script setup>
 import { portfolioData } from '@/data/portfolioData.js'
 const { personal, sobreMi, idiomas, experiencia, educacion, skills, fraseCreativa } = portfolioData
+
+const categoryLabels = {
+  lenguajes: 'Lenguajes',
+  frameworks: 'Frameworks',
+  herramientas: 'Herramientas',
+  ias: 'IA'
+}
+
+const formatCategory = (key) => categoryLabels[key] || key
 </script>
 
 <style scoped>

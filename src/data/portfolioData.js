@@ -47,7 +47,7 @@ export const portfolioData = {
       { nombre: 'Node.js', nivel: 70 },
       { nombre: 'Docker', nivel: 60 }
     ],
-    IA: [
+    ias: [
       { nombre: 'GPT 5.5', nivel: 80 },
       { nombre: 'Claude', nivel: 70 },
       { nombre: 'DeepSeek', nivel: 65 },

@@ -6,7 +6,7 @@
     <ThirdPage id="frameworks" title="Frameworks" :skills="skills.frameworks" />
     <ThirdPage id="ias" title="Inteligencia Artificial" :skills="skills.ias" />
     <FourthPage />
-    <!-- AQUÍ NO PONGAS NINGÚN FOOTER, YA ESTÁ EN App.vue -->
+    <!-- El footer esta en App.vue -->
   </div>
 </template>
 
