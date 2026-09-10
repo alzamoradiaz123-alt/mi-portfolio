@@ -86,7 +86,7 @@ export const portfolioData = {
     {
       institucion: 'I.E.P Virgen de la puerta | Lima, Perú',
       titulo: 'Bachiller Tecnológico',
-      fecha: '2003'
+      fecha: '2019'
     }
   ],
 
