@@ -6,16 +6,16 @@
         <img src="/logo_ba_no_fondo.png" alt="Bryan Alzamora" class="brand-logo" />
       </router-link>
 
-      <div class="collapse navbar-collapse nav-center-wrap" id="navbarNav">
+      <div ref="navbarCollapse" class="collapse navbar-collapse nav-center-wrap" id="navbarNav">
         <ul class="navbar-nav nav-center">
             <li class="nav-item">
-                <router-link class="nav-link" to="/" active-class="active">Inicio</router-link>
+                <router-link class="nav-link" to="/" active-class="active" @click="closeMenu">Inicio</router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/about" active-class="active">Sobre mí</router-link>
+                <router-link class="nav-link" to="/about" active-class="active" @click="closeMenu">Sobre mí</router-link>
             </li>
             <li class="nav-item">
-                <router-link class="nav-link" to="/contacto" active-class="active">Contacto</router-link>
+                <router-link class="nav-link" to="/contacto" active-class="active" @click="closeMenu">Contacto</router-link>
             </li>
 
             <!-- Solo visible en móvil, dentro del menú desplegado -->
@@ -25,7 +25,7 @@
                 </span>
             </li>
             <li class="nav-item d-lg-none mt-2 mb-3">
-                <router-link to="/contacto" class="btn-cta">¿Hablemos? →</router-link>
+                <router-link to="/contacto" class="btn-cta" @click="closeMenu">¿Hablemos? →</router-link>
             </li>
         </ul>
       </div>
@@ -43,6 +43,27 @@
     </div>
   </nav>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+
+const navbarCollapse = ref(null)
+
+const closeMenu = () => {
+  const el = navbarCollapse.value
+  if (!el || !el.classList.contains('show')) return
+
+  // Intentar cerrar con la API de Bootstrap (con fallback)
+  if (window.bootstrap?.Collapse) {
+    const instance = window.bootstrap.Collapse.getInstance(el)
+      || new window.bootstrap.Collapse(el, { toggle: false })
+    instance.hide()
+  } else {
+    // Fallback: eliminar la clase show manualmente
+    el.classList.remove('show')
+  }
+}
+</script>
 
 <style scoped>
 .navbar {
