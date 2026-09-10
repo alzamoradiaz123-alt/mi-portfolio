@@ -27,7 +27,7 @@ const year = ref(new Date().getFullYear())
   background-color: #FAFAFA !important;
   border-top: 1px solid #EAEAEA;
   padding: 20px 0;
-  position: sticky;
+  position: static;
   bottom: 0;
   z-index: 1050;
 }
@@ -68,14 +68,10 @@ const year = ref(new Date().getFullYear())
   font-weight: 300;
 }
 
-@media (max-width: 576px) {
-  .footer-row {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  }
-  .footer-left {
-    flex-wrap: wrap;
+@media (min-width: 992px) {
+  .footer {
+    position: sticky;
+    bottom: 0;
   }
 }
 </style>
