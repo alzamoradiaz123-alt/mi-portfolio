@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+// Paleta de colores Light + Purple
+$bg:         #FAFAFA;
+$surface:    #FFFFFF;
+$ink:        #111111;
+$muted:      #6B6B6B;
+$border:     #EAEAEA;
+$purple:     #6C4CF1;
+$purple-soft:#F1EDFF;
+
+// Sobrescribir variables de Bootstrap
+$body-bg: $bg;
+$body-color: $ink;
+$primary: $purple;
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+// Importar Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+// Estilos globales
+body {
+  background-color: $bg;
+  color: $ink;
+  font-family: $font-family-sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+section {
+  padding: 80px 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+// Animación fade-up (se mantiene)
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+// Utilidades de color
+.text-purple {
+  color: $purple !important;
+}
+.text-ink {
+  color: $ink !important;
+}
+.text-muted-custom {
+  color: $muted !important;
+}
+.bg-surface {
+  background-color: $surface !important;
+}
+.border-custom {
+  border-color: $border !important;
+}
+
+// Botón primario morado
+.btn-purple {
+  background-color: $purple;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: darken($purple, 8%);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba($purple, 0.3);
+  }
+}
+
+// Botón outline neutro (para GitHub/LinkedIn)
+.btn-outline-ink {
+  color: $ink;
+  border: 1px solid $border;
+  background: transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  transition: all 0.3s ease;
+  &:hover {
+    border-color: $purple;
+    color: $purple;
+  }
+}
+
+// Cards (tarjetas blancas)
+.card-custom {
+  background-color: $surface;
+  border: 1px solid $border;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba($purple, 0.12);
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $bg;
+}
+::-webkit-scrollbar-thumb {
+  background: $purple;
+  border-radius: 4px;
+}
