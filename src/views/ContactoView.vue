@@ -42,12 +42,20 @@
               ></textarea>
             </div>
 
-            <button type="submit" class="btn-submit">
-              Enviar Mensaje
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
-              </svg>
+            <button type="submit" class="btn-submit" :disabled="enviando">
+                <span v-if="enviando">Enviando...</span>
+                <span v-else-if="enviado">✓ ¡Mensaje enviado!</span>
+                <span v-else>
+                    Enviar Mensaje
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                    </svg>
+                </span>
             </button>
+
+            <!-- Mensajes de feedback -->
+            <p v-if="enviado" class="feedback success">Tu mensaje se ha enviado correctamente. Te responderé lo antes posible.</p>
+            <p v-if="error" class="feedback error">{{ error }}</p>
           </form>
 
           <p class="contact-alt">
@@ -62,10 +70,13 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { portfolioData } from '@/data/portfolioData.js'
 
 const personal = portfolioData.personal
+
+// Tu Access Key de Web3Forms
+const ACCESS_KEY = '35288bde-2b64-4a76-9928-f5e27838f38a'
 
 const form = reactive({
   nombre: '',
@@ -73,9 +84,48 @@ const form = reactive({
   consulta: ''
 })
 
-const enviarMensaje = () => {
-  // Aquí conectas con tu backend/servicio de email (EmailJS, Formspree, etc.)
-  console.log('Formulario enviado:', form)
+const enviando = ref(false)
+const enviado = ref(false)
+const error = ref('')
+
+const enviarMensaje = async () => {
+  enviando.value = true
+  error.value = ''
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        access_key: ACCESS_KEY,
+        name: form.nombre,
+        email: form.correo,
+        message: form.consulta,
+        subject: `Nuevo mensaje de ${form.nombre} desde tu portfolio`,
+        from_name: 'Portfolio Bryan Alzamora'
+      })
+    })
+
+    const data = await response.json()
+
+    if (data.success) {
+      enviado.value = true
+      form.nombre = ''
+      form.correo = ''
+      form.consulta = ''
+      // Ocultar el mensaje de éxito después de 5 segundos
+      setTimeout(() => { enviado.value = false }, 5000)
+    } else {
+      error.value = 'Hubo un problema al enviar el mensaje. Inténtalo de nuevo.'
+    }
+  } catch (e) {
+    error.value = 'Error de conexión. Comprueba tu internet e inténtalo de nuevo.'
+  } finally {
+    enviando.value = false
+  }
 }
 </script>
 
@@ -175,6 +225,29 @@ const enviarMensaje = () => {
 }
 .contact-email:hover {
   color: #6C4CF1;
+}
+
+.btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.feedback {
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.feedback.success {
+  background: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+.feedback.error {
+  background: #FFEBEE;
+  color: #C62828;
+  border: 1px solid #EF9A9A;
 }
 
 @media (max-width: 576px) {
