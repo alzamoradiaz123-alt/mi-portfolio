@@ -13,21 +13,49 @@
         <!-- Proyecto: Mundanza Segura -->
         <a href="https://www.mundanzasegura.com/" target="_blank" class="project-card">
           <div class="project-image-wrapper">
-            <!-- Reemplaza esta imagen con una captura de pantalla de la web -->
-            <img src="https://via.placeholder.com/600x400/FAFAFA/6C4CF1?text=Mundanza+Segura" alt="Mundanza Segura" class="project-image" />
+            <img src="/public/mundasegura_logo.png" alt="Mundanza Segura" class="project-image" />
             <div class="project-overlay">
               <span class="project-link-icon">→</span>
             </div>
+            <span class="project-badge">★ Proyecto destacado</span>
           </div>
+
           <div class="project-info">
             <h3 class="project-name">Mundanza Segura</h3>
             <p class="project-description">
               Marketplace de transporte que conecta a usuarios con transportistas verificados. Permite publicar mudanzas, recibir propuestas, comparar precios y cerrar acuerdos de forma segura.
             </p>
-            <div class="project-tags">
-              <span class="tag">Vue.js</span>
-              <span class="tag">Marketplace</span>
-              <span class="tag">Web App</span>
+
+            <!-- Stack técnico agrupado por categorías -->
+            <div class="project-stack">
+              <div class="stack-group">
+                <span class="stack-label">Backend</span>
+                <div class="stack-tags">
+                  <span class="tag">Laravel 11</span>
+                  <span class="tag">MySQL</span>
+                  <span class="tag">Sanctum</span>
+                </div>
+              </div>
+
+              <div class="stack-group">
+                <span class="stack-label">Frontend</span>
+                <div class="stack-tags">
+                  <span class="tag">Vue 3</span>
+                  <span class="tag">Vite</span>
+                  <span class="tag">Pinia</span>
+                  <span class="tag">SCSS</span>
+                </div>
+              </div>
+
+              <div class="stack-group">
+                <span class="stack-label">Infraestructura</span>
+                <div class="stack-tags">
+                  <span class="tag">Cloudflare</span>
+                  <span class="tag">Railway</span>
+                  <span class="tag">Vercel</span>
+                  <span class="tag">Resend</span>
+                </div>
+              </div>
             </div>
           </div>
         </a>
@@ -80,7 +108,7 @@
 /* Grid de proyectos */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 32px;
 }
 
@@ -116,6 +144,21 @@
   transform: scale(1.05);
 }
 
+/* Badge "Proyecto destacado" */
+.project-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #6C4CF1;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 100px;
+  z-index: 2;
+  letter-spacing: 0.3px;
+}
+
 /* Overlay que aparece al hacer hover */
 .project-overlay {
   position: absolute;
@@ -126,6 +169,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.3s ease;
+  z-index: 1;
 }
 .project-card:hover .project-overlay {
   opacity: 1;
@@ -149,12 +193,33 @@
   color: #6B6B6B;
   font-size: 0.9rem;
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
-.project-tags {
+
+/* Stack técnico */
+.project-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #F0F0F0;
+}
+.stack-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.stack-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #6C4CF1;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+.stack-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 .tag {
   background: #F1EDFF;
