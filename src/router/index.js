@@ -18,6 +18,11 @@ const routes = [
     path: '/contacto',
     name: 'contacto',
     component: ContactoView
+  },
+  {
+    path: '/proyectos',
+    name: 'proyectos',
+    component: ProjectsView
   }
 ]
 

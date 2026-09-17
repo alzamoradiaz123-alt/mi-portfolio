@@ -15,6 +15,9 @@
                 <router-link class="nav-link" to="/about" active-class="active" @click="closeMenu">Sobre mí</router-link>
             </li>
             <li class="nav-item">
+              <router-link class="nav-link" to="/proyectos" active-class="active" @click="closeMenu">Proyectos</router-link>
+            </li>
+            <li class="nav-item">
                 <router-link class="nav-link" to="/contacto" active-class="active" @click="closeMenu">Contacto</router-link>
             </li>
 

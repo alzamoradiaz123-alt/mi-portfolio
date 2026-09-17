@@ -63,18 +63,18 @@ export const portfolioData = {
       descripcion: 'Participación en el desarrollo y mantenimiento de aplicaciones web. Colaboración con el equipo de desarrollo en tareas de programación y pruebas. Trabajo con bases de datos y herramientas de control de versiones. Resolución de incidencias y mejora de funcionalidades existentes.'
     },
     {
-      empresa: 'Mozo de almacén en el ámbito industrial',
-      puesto: 'Mozo de almacén',
-      fecha: 'Enero 2021 - 2022',
-      tipo: 'Laboral',
-      descripcion: 'Tareas logísticas y de organización en entorno industrial.'
-    },
-    {
       empresa: 'Ayudante de cocina',
       puesto: 'Ayudante de cocina',
       fecha: '2023 - 2025',
       tipo: 'Laboral',
       descripcion: 'Apoyo en la preparación y organización en cocina.'
+    },
+    {
+      empresa: 'Mozo de almacén en el ámbito industrial',
+      puesto: 'Mozo de almacén',
+      fecha: 'Enero 2021 - 2022',
+      tipo: 'Laboral',
+      descripcion: 'Tareas logísticas y de organización en entorno industrial.'
     }
   ],
   educacion: [
